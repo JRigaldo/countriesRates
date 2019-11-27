@@ -25,6 +25,8 @@ class RateExchangeList extends Component {
     }
 }
 
+// rateExchangeList = tableau du payload
+// rateExchangeReducer = nom du reducer dans l'index
 const mapStateToProps = state => {
     return {
         rateExchangeList: state.rateExchangeReducer.rateExchangeList

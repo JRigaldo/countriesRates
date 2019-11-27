@@ -13,9 +13,22 @@ export default function(oldRateExchangeReducer = initialState, action){
         case GET_RATE_EXCHANGE :
             return {
                 ...oldRateExchangeReducer,
+                //voir les commentaire ci-apres
                 rateExchangeList: [action.payload, ...oldRateExchangeReducer.rateExchangeList]
             }
         default : return oldRateExchangeReducer;
     }
 }
+
+/*
+    // rateExchangeList ci-dessous va être repris dans les props de mapStateToProps 
+    // juste devant le nom que l'index reducer rateExchangeReducer lors de la connexion du reducer à l'index reducer
+    // ex:
+    // const mapStateToProps = state => {
+    //     return {
+    //=>       rateExchangeList: state.rateExchangeReducer.rateExchangeList
+    //     }
+    // }
+    // Dans rate-exchange-list 
+*/
 
