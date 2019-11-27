@@ -12,8 +12,11 @@ export function fetchCountries(){
 
 export function fetchRateExchange(country) {
     return function(dispatch){
-        axios.get(`GET https://api.exchangeratesapi.io/history?start_at=${getLastMonth()}&end_at=${formatedDate(new Date())}base=USD&symbols=${country.code}`).then(axiosResponse => {
-            dispatch({type: GET_RATE_EXCHANGE, payload: axiosResponse.data.rates, ...country})
+        axios.get(`https://api.exchangeratesapi.io/history?start_at=${getLastMonth()}&end_at=${formatedDate(new Date())}&base=USD&symbols=${country.currencyCode}`).then(axiosResponse => {
+            dispatch({ 
+                type: GET_RATE_EXCHANGE, 
+                payload: { rates: axiosResponse.data.rates, ...country } 
+                })
         })
     }
 }
@@ -25,6 +28,10 @@ function formatedDate(date){
 function getLastMonth() {
     let now = new Date()
     now.setMonth(now.getMonth() -1);
-    return getLastMonth(now);
+    return formatedDate(now);
 }
+
+// "https://api.exchangeratesapi.io/history?start_at=2018-01-01&end_at=2018-09-01&symbols=ILS,JPY"
+// "https://api.exchangeratesapi.io/history?start_at=2019-10-23&end_at=2019-11-23&symbols=BEL"
+
 

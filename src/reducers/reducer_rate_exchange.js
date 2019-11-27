@@ -1,10 +1,14 @@
-import {GET_RATE_EXCHANGE} from '../actions/index';
+import {GET_RATE_EXCHANGE} from '../actions';
 
-const initalState = {
-    initialRateExchange : []
+const initialState = {
+    rateExchangeList : []
 }
 
-export default function(oldRateExchangeReducer = initalState, action){
+// ici rateEchangeList est le nom de l'objet désiré ou se trouvera le payload retourné depuis l'action
+// ...oldRateExchangeReducer est le tableau des données de l'action retournée split spread (avec les trois petits points)
+// rateExchangeList comprend le payload = les donées + les donées précèdentes puisque rateExchangeList est le nom de l'objet
+// il y sera donc 2x
+export default function(oldRateExchangeReducer = initialState, action){
     switch(action.type) {
         case GET_RATE_EXCHANGE :
             return {
@@ -14,3 +18,4 @@ export default function(oldRateExchangeReducer = initalState, action){
         default : return oldRateExchangeReducer;
     }
 }
+
